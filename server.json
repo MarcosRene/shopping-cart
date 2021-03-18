@@ -1,0 +1,66 @@
+{
+  "stock": [
+    {
+      "id": 1,
+      "amount": 3
+    },
+    {
+      "id": 2,
+      "amount": 5
+    },
+    {
+      "id": 3,
+      "amount": 2
+    },
+    {
+      "id": 4,
+      "amount": 1
+    },
+    {
+      "id": 5,
+      "amount": 5
+    },
+    {
+      "id": 6,
+      "amount": 10
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Tênis Nike Revolution 5",
+      "price": 309.9,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd_0aP-ccYXK1oqts6QR93819kZDp2nEDjFPmX89qNDFXy0ZUoy2pC9v7CsQgDX3hhDaOTnop0&usqp=CAc"
+    },
+    {
+      "id": 2,
+      "title": "Tênis Nike Downshifter",
+      "price": 199.9,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsBOmUkFigsmuhsCy09AuGwJcc-e52j3cQgHiKP1gNZQSlbMhpB6nPk2ZMQ7K1fSiDqACzTgo&usqp=CAc"
+    },
+    {
+      "id": 3,
+      "title": "Tênis Nike Flex Control 4",
+      "price": 299.9,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMfXqEFdIaLE5shYn9K5PT_u39rR7AHZoAVRkKfkqD7PNhXKHgiKxUe2nqnE9ZOCwqpdU-tSND&usqp=CAc"
+    },
+    {
+      "id": 5,
+      "title": "Tênis Nike Quest 3",
+      "price": 329.9,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJAJF8a7CilSWRDlUddCloRt3uxvG-HsdEgeo9Rlbrg_s0APenMetpNsCJjQtwb-uHZt-xLAk&usqp=CAc"
+    },
+    {
+      "id": 6,
+      "title": "Tênis Nike Air Zoom Winflo 7",
+      "price": 369.9,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdHlxZ7c9B0uCM2uRk8b0LZaWuGj3FNwVbmU8TgfNlgmS-6bDGwFYsHIzOt9lFeP5oYaDFoPeN&usqp=CAc"
+    },
+    {
+      "id": 4,
+      "title": "Tênis Revolution 5 Ext",
+      "price": 189.9,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtmuPkD12QmzPSjLOgeXV7UckFS2QGhy8rWPTCKaRcmNLvR6KrY-yJuFvfiI1nLykQbLYsdVH3&usqp=CAc"
+    }
+  ]
+}
