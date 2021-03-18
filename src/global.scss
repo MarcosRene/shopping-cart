@@ -1,6 +1,7 @@
 :root {
-  --gb-header: #1b1b1b;
-  --color-text: #f8f8f8;
+  --primary: #040507;
+  --secondary: #f7fafc;
+  --terciary: #21D4FD;
 }
 
 * {
@@ -15,4 +16,12 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  background: var(--primary);
+}
+
+.container {
+  margin: 0 auto;
+  padding: 2rem;
+  max-width: 1024px;
+  height: 100%;
 }
