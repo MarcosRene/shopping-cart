@@ -1,9 +1,17 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-import './global.css';
+import Header from './components/Header';
+import './global.scss';
+import Routes from './routes';
 
 function App() {
-  return <h1>Welcome</h1>;
+  return (
+    <BrowserRouter>
+      <Header />
+      <Routes />
+    </BrowserRouter>
+  );
 }
 
 export default App;
