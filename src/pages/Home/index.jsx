@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
 import { MdAddShoppingCart } from 'react-icons/md';
-
+import { formatPrice } from '../../utils/formate';
 import api from '../../services/api';
 
 import './styles.scss';
@@ -11,7 +10,13 @@ const Home = () => {
 
   useEffect(() => {
     async function loadProducts() {
-      const { data } = await api.get('/products');
+      const response = await api.get('/products');
+
+      const data = response.data.map((product) => ({
+        ...product,
+        priceFormatted: formatPrice(product.price),
+      }));
+
       setProducts(data);
     }
 
@@ -28,7 +33,7 @@ const Home = () => {
               alt={product.title}
             />
             <strong>{product.title}</strong>
-            <span>{product.price}</span>
+            <span>{product.priceFormatted}</span>
             <button type="button">
               <div>
                 <MdAddShoppingCart size={16} color="#f7fafc" />
