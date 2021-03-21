@@ -17,17 +17,17 @@ function CartProdiver({ children }) {
     const storagedCart = localStorage.getItem(`${STORAGE_KEY}:cart`);
 
     if (storagedCart) {
-      return JSON.parse(storagedCart);
+      setCart(JSON.parse(storagedCart));
     }
-
-    return [];
   }, []);
 
   const addProduct = async (productId) => {
     try {
       const { data: productStock } = await api.get(`/stock/${productId}`);
 
-      if (productStock.amount <= 1) {
+      const stockAmount = productStock.amount;
+
+      if (stockAmount < 1) {
         throw new Error('Quantidade solicitada fora de estoque');
       }
 
@@ -59,11 +59,59 @@ function CartProdiver({ children }) {
     }
   };
 
+  const removeProduct = (productId) => {
+    try {
+      const existingProduct = cart.find((product) => product.id !== productId);
+
+      if (existingProduct) {
+        throw new Error('Produto não existe');
+      }
+
+      const newCart = cart.filter((product) => product.id !== productId);
+      localStorage.setItem(`${STORAGE_KEY}:cart`, JSON.stringify(newCart));
+
+      setCart(newCart);
+    } catch (error) {
+      toast.error('Erro na remoção do produto');
+    }
+  };
+
+  const updateProductAmount = async ({ productId, amount }) => {
+    try {
+      if (amount < 1) {
+        throw new Error('Quantidade inválida');
+      }
+
+      const { data: productStock } = await api.get(`/stock/${productId}`);
+
+      const stockAmount = productStock.amout;
+
+      if (stockAmount <= 1) {
+        toast.error('Quantidade solicitada fora de estoque');
+        return;
+      }
+
+      const newCart = cart.map((product) => (product.id !== productId ? product : {
+        ...product,
+        amount,
+      }));
+
+      localStorage.setItem(`${STORAGE_KEY}:cart`, JSON.stringify(newCart));
+
+      setCart(newCart);
+    } catch (error) {
+      toast.error('Erro na alteração de quantidade do produto');
+    }
+  };
+
   return (
-    <CartContext.Provider value={{
-      cart,
-      addProduct,
-    }}
+    <CartContext.Provider
+      value={{
+        cart,
+        addProduct,
+        removeProduct,
+        updateProductAmount,
+      }}
     >
       {children}
     </CartContext.Provider>

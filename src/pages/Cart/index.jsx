@@ -10,7 +10,7 @@ import { useCart } from '../../context/cart';
 import './styles.scss';
 
 const Cart = () => {
-  const { cart } = useCart();
+  const { cart, removeProduct, updateProductAmount } = useCart();
 
   const cartFormatted = cart.map((product) => ({
     ...product,
@@ -26,6 +26,14 @@ const Cart = () => {
       return sumTotal;
     }, 0),
   );
+
+  function handleProductIncrement(product) {
+    updateProductAmount({ productId: product.id, amount: product.amount + 1 });
+  }
+
+  function handleProductDecrement(product) {
+    updateProductAmount({ productId: product.id, amount: product.amount - 1 });
+  }
 
   return (
     <div className="container">
@@ -67,15 +75,19 @@ const Cart = () => {
                       <div>
                         <button
                           type="button"
+                          disabled={product.amount <= 1}
+                          onClick={() => handleProductDecrement(product)}
                         >
                           <MdRemoveCircleOutline size={20} />
                         </button>
                         <input
                           type="text"
-                          value="1"
+                          readOnly
+                          value={product.amount}
                         />
                         <button
                           type="button"
+                          onClick={() => handleProductIncrement(product)}
                         >
                           <MdAddCircleOutline size={20} />
                         </button>
@@ -87,6 +99,7 @@ const Cart = () => {
                     <td>
                       <button
                         type="button"
+                        onClick={() => removeProduct(product.id)}
                       >
                         <MdDelete size={20} />
                       </button>
