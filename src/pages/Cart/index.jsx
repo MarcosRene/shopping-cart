@@ -1,72 +1,114 @@
 import React from 'react';
-import { MdRemoveCircleOutline, MdAddCircleOutline, MdDelete } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import {
+  MdRemoveCircleOutline, MdAddCircleOutline, MdDelete, MdRemoveShoppingCart,
+} from 'react-icons/md';
+
+import { formatPrice } from '../../utils/formate';
+import { useCart } from '../../context/cart';
 
 import './styles.scss';
 
-const Cart = () => (
-  <div className="container">
-    <div className="content">
-      <table className="table__product">
-        <thead>
-          <tr>
-            <th aria-label="product image" />
-            <th>Produto</th>
-            <th>Qnt</th>
-            <th>Subtotal</th>
-            <th aria-label="delete icon" />
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd_0aP-ccYXK1oqts6QR93819kZDp2nEDjFPmX89qNDFXy0ZUoy2pC9v7CsQgDX3hhDaOTnop0&usqp=CAc" alt="" />
-            </td>
-            <td>
-              <strong>Tenis Nike Revolution 5 Preto/branco</strong>
-              <span>R$309,99</span>
-            </td>
-            <td>
+const Cart = () => {
+  const { cart } = useCart();
+
+  const cartFormatted = cart.map((product) => ({
+    ...product,
+    priceFormatted: formatPrice(product.price),
+    priceTotal: formatPrice(product.amount * product.price),
+  }));
+
+  const total = formatPrice(
+    cart.reduce((sumTotal, product) => {
+      // eslint-disable-next-line no-param-reassign
+      sumTotal += (product.price * product.amount);
+
+      return sumTotal;
+    }, 0),
+  );
+
+  return (
+    <div className="container">
+      <div className="content">
+        {cart.length === 0 ? (
+          <div className="empty__cart">
+            <MdRemoveShoppingCart />
+            <div>
+              <h2>Oops...</h2>
+              <p>Parece que seu carrinho de compras está vazio!</p>
+              <Link to="/">
+                <span>Comece a comprar</span>
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <>
+            <table className="table__product">
+              <thead>
+                <tr>
+                  <th aria-label="product image" />
+                  <th>Produto</th>
+                  <th>Qnt</th>
+                  <th>Subtotal</th>
+                  <th aria-label="delete icon" />
+                </tr>
+              </thead>
+              <tbody>
+                {cartFormatted.map((product) => (
+                  <tr key={product.id}>
+                    <td>
+                      <img src={product.image} alt={product.title} />
+                    </td>
+                    <td>
+                      <strong>{product.title}</strong>
+                      <span>{product.priceFormatted}</span>
+                    </td>
+                    <td>
+                      <div>
+                        <button
+                          type="button"
+                        >
+                          <MdRemoveCircleOutline size={20} />
+                        </button>
+                        <input
+                          type="text"
+                          value="1"
+                        />
+                        <button
+                          type="button"
+                        >
+                          <MdAddCircleOutline size={20} />
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      <strong>{product.priceFormatted}</strong>
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                      >
+                        <MdDelete size={20} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <footer>
+              <button type="button">Finalizar pedido</button>
+
               <div>
-                <button
-                  type="button"
-                >
-                  <MdRemoveCircleOutline size={20} />
-                </button>
-                <input
-                  type="text"
-                  value="1"
-                />
-                <button
-                  type="button"
-                >
-                  <MdAddCircleOutline size={20} />
-                </button>
+                <span>Total</span>
+                <strong>{total}</strong>
               </div>
-            </td>
-            <td>
-              <strong>309,99</strong>
-            </td>
-            <td>
-              <button
-                type="button"
-              >
-                <MdDelete size={20} />
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <footer>
-        <button type="button">Finalizar pedido</button>
-
-        <div>
-          <span>Total</span>
-          <strong>R$309,99</strong>
-        </div>
-      </footer>
+            </footer>
+          </>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Cart;

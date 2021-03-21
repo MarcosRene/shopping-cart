@@ -5,8 +5,18 @@ import api from '../../services/api';
 
 import './styles.scss';
 
+import { useCart } from '../../context/cart';
+
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const { cart, addProduct } = useCart();
+
+  const cartItemsAmount = cart.reduce((sumAmount, product) => {
+    // eslint-disable-next-line no-param-reassign
+    sumAmount[product.id] = product.amount;
+
+    return sumAmount;
+  }, {});
 
   useEffect(() => {
     async function loadProducts() {
@@ -34,10 +44,10 @@ const Home = () => {
             />
             <strong>{product.title}</strong>
             <span>{product.priceFormatted}</span>
-            <button type="button">
+            <button type="button" onClick={() => addProduct(product.id)}>
               <div>
                 <MdAddShoppingCart size={16} color="#f7fafc" />
-                {product.amout || 0}
+                {cartItemsAmount[product.id] || 0}
               </div>
               <span>Adicionar ao carrinho</span>
             </button>

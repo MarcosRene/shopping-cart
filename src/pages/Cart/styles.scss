@@ -1,7 +1,51 @@
 .content {
   padding: 30px;
-  background: #ffffff;
+  background: var(--secondary);
   border-radius: 4px;
+
+  .empty__cart {
+    min-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    svg {
+      font-size: 260px;
+      color: #f2f2f3;
+      position: absolute;
+    }
+
+    div {
+      z-index: 1;
+      text-align: center;
+
+      h2 {
+        font-size: 56px;
+      }
+      
+      p {
+        margin: 12px 0 28px;
+        font-size: 16px;
+      }
+
+      a {
+        text-decoration: none;
+        background: var(--primary);
+        padding: 12px 16px;
+        border-radius: 2px;
+        transition: opacity 0.2s;
+        
+        span {
+          color: var(--secondary);  
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
 
   table {
     width: 100%;
