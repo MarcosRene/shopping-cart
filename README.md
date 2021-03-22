@@ -1,9 +1,4 @@
 <p align="center">
-  <a href="#tec">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#infor">Como usar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-</p>
-
-<p align="center">
   <img src="./.github/home.png" alt="Shopping Homepage"/>
 </p>
 
