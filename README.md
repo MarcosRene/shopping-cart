@@ -1,4 +1,10 @@
 <p align="center">
+  <a href="#rocket-technologies">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#information_source-how-to-use">Como usar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-license">Licença</a>
+</p>
+
+<p align="center">
   <img src="./.github/home.png" alt="Shopping Homepage"/>
 </p>
 
